@@ -51,6 +51,16 @@ services:
     networks:
       - elastic-stack
 
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.5.2
+    container_name: apm
+    volumes: 
+      - ./apm-server/:/usr/share/apm-server/apm-server.yml
+    depends_on: 
+      - elasticsearch
+    networks:
+      - elastic-stack
+
 networks:
   elastic-stack:
     driver: bridge
